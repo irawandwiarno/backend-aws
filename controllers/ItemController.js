@@ -1,17 +1,17 @@
-import User from "../models/UserModel.js";
+import Item from "../models/ItemModel.js";
 
-export const getUsers = async(req, res) =>{
+export const getItems = async(req, res) =>{
     try {
-        const response = await User.findAll();
+        const response = await Item.findAll();
         res.status(200).json(response);
     } catch (error) {
         console.log(error.message);
     }
 }
 
-export const getUserById = async(req, res) =>{
+export const getItemById = async(req, res) =>{
     try {
-        const response = await User.findOne({
+        const response = await Item.findOne({
             where:{
                 id: req.params.id
             }
@@ -22,36 +22,36 @@ export const getUserById = async(req, res) =>{
     }
 }
 
-export const createUser = async(req, res) =>{
+export const createItem = async(req, res) =>{
     try {
-        await User.create(req.body);
-        res.status(201).json({msg: "User Created"});
+        await Item.create(req.body);
+        res.status(201).json({msg: "Item Created"});
     } catch (error) {
         console.log(error.message);
     }
 }
 
-export const updateUser = async(req, res) =>{
+export const updateItem = async(req, res) =>{
     try {
-        await User.update(req.body,{
+        await Item.update(req.body,{
             where:{
                 id: req.params.id
             }
         });
-        res.status(200).json({msg: "User Updated"});
+        res.status(200).json({msg: "Item Updated"});
     } catch (error) {
         console.log(error.message);
     }
 }
 
-export const deleteUser = async(req, res) =>{
+export const deleteItem = async(req, res) =>{
     try {
-        await User.destroy({
+        await Item.destroy({
             where:{
                 id: req.params.id
             }
         });
-        res.status(200).json({msg: "User Deleted"});
+        res.status(200).json({msg: "Item Deleted"});
     } catch (error) {
         console.log(error.message);
     }
